@@ -2,6 +2,8 @@
 
 Step 2 evaluates how orthopedic practices handle inbound scheduling calls. The work product lives in [`outputs/orthopedic_practices_with_scheduling_information.csv`](/D:/kyron-applied-software/deliverable-two/outputs/orthopedic_practices_with_scheduling_information.csv).
 
+This deliverable is structured around a one-call-per-practice default. Not every practice will be reached, and not every call will be accepted or produce a complete classification.
+
 ## Call Script
 
 Use the shortest truthful human script possible.
@@ -71,31 +73,31 @@ Current base columns already present:
 - `source_url`
 
 Step 2 columns to add/populate:
-- `A_followup_working_hours`
-- `B_new_working_hours`
-- `C_followup_after_hours`
-- `D_new_after_hours`
-- `working_hours_call_completed`
-- `after_hours_call_completed`
-- `working_hours_call_datetime`
-- `after_hours_call_datetime`
+- `call_attempted`
+- `call_scenario`
+- `call_completed`
+- `call_datetime`
 - `working_hours_entrypoint`
 - `after_hours_entrypoint`
 - `working_hours_scheduler_endpoint`
 - `after_hours_scheduler_endpoint`
 - `working_hours_confidence`
 - `after_hours_confidence`
-- `call_attempts_total`
-- `last_call_outcome`
 - `notes`
 
-Recommended values for the A/B/C/D classification columns:
-- `human`
-- `automated`
-- `voicemail`
-- `mixed`
-- `unknown`
-- `not_tested`
+Recommended values for `call_attempted`:
+- `yes`
+- `no`
+
+Recommended values for `call_scenario`:
+- `A`
+- `B`
+- `C`
+- `D`
+
+Recommended values for `call_completed`:
+- `yes`
+- `no`
 
 Recommended values for `working_hours_entrypoint` and `after_hours_entrypoint`:
 - `human`
@@ -119,9 +121,14 @@ Recommended values for confidence:
 
 ## Population Rules
 
-- A single working-hours call may populate both `A_followup_working_hours` and `B_new_working_hours` if the menu or staff answer distinguishes them clearly.
-- A single after-hours call may populate both `C_followup_after_hours` and `D_new_after_hours` if the after-hours behavior is clear.
-- If the system does not distinguish between new and follow-up patients, populate both relevant categories with the same value and explain that in `notes`.
+- `call_scenario` should record which scenario the single observed call represents:
+  - `A` = follow-up patient during working hours
+  - `B` = new patient during working hours
+  - `C` = follow-up patient outside working hours
+  - `D` = new patient outside working hours
+- `call_attempted` should be `yes` when a call was placed and `no` otherwise.
+- `call_completed` should be `yes` when you were able to classify the scheduling behavior from that call and `no` when the call did not yield a usable result.
+- `call_datetime` should store the timestamp of the actual observed call.
 - Use `voicemail` only when the caller is clearly asked to leave a message.
 - Use `unknown` when the behavior is inconclusive.
 
