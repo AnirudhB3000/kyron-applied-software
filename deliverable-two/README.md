@@ -81,8 +81,8 @@ Step 2 columns to add/populate:
 - `after_hours_entrypoint`
 - `working_hours_scheduler_endpoint`
 - `after_hours_scheduler_endpoint`
-- `working_hours_confidence`
-- `after_hours_confidence`
+- `confidence`
+- `confidence`
 - `notes`
 
 Recommended values for `call_attempted`:
@@ -115,9 +115,9 @@ Recommended values for `working_hours_scheduler_endpoint` and `after_hours_sched
 - `unknown`
 
 Recommended values for confidence:
-- `high`
-- `medium`
-- `low`
+- `high`: High chance of successful scheduling / follow-up.
+- `medium`: Medium chance of successful scheduling / follow-up.
+- `low`: Low chance of successful scheduling / follow-up.
 
 ## Population Rules
 
@@ -128,12 +128,4 @@ Recommended values for confidence:
   - `D` = new patient outside working hours
 - `call_attempted` should be `yes` when a call was placed and `no` otherwise.
 - `call_completed` should be `yes` when you were able to classify the scheduling behavior from that call and `no` when the call did not yield a usable result.
-- `call_datetime` should store the timestamp of the actual observed call.
-- Use `voicemail` only when the caller is clearly asked to leave a message.
-- Use `unknown` when the behavior is inconclusive.
-
-Recommended note style:
-- `WH: IVR -> appointments -> live scheduler`
-- `WH: receptionist said new and follow-up both handled by staff`
-- `AH: closed message, no scheduling option`
-- `AH: automated callback request for new patients`
+- `call_datetime` should store the time of the actual observed call.
