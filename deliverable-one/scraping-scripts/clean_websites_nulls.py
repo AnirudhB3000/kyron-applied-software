@@ -2,9 +2,10 @@ import csv
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent
-INPUT_PATH = BASE_DIR / "outputs" / "orthopedic_practices_with_websites.csv"
-OUTPUT_PATH = BASE_DIR / "outputs" / "final_orthopedic_practices.csv"
+SCRIPT_DIR = Path(__file__).resolve().parent
+DELIVERABLE_DIR = SCRIPT_DIR.parent
+INPUT_PATH = DELIVERABLE_DIR / "outputs" / "orthopedic_practices_with_websites.csv"
+OUTPUT_PATH = DELIVERABLE_DIR / "outputs" / "final_orthopedic_practices.csv"
 
 
 def clean_websites() -> None:

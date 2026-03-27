@@ -9,14 +9,15 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 
 
-BASE_DIR = Path(__file__).resolve().parent
-REPO_ROOT = BASE_DIR.parent
+SCRIPT_DIR = Path(__file__).resolve().parent
+DELIVERABLE_DIR = SCRIPT_DIR.parent
+REPO_ROOT = DELIVERABLE_DIR.parent
 ENV_PATH = REPO_ROOT / ".env"
-INPUT_PATH = BASE_DIR / "outputs" / "orthopedic_practices_deduped.csv"
-OUTPUT_PATH = BASE_DIR / "outputs" / "orthopedic_practices_with_websites.csv"
-SUMMARY_PATH = BASE_DIR / "outputs" / "website_enrichment_summary.json"
-QUERY_CACHE_PATH = BASE_DIR / "outputs" / "website_query_cache.json"
-DETAILS_CACHE_PATH = BASE_DIR / "outputs" / "website_details_cache.json"
+INPUT_PATH = DELIVERABLE_DIR / "outputs" / "orthopedic_practices_deduped.csv"
+OUTPUT_PATH = DELIVERABLE_DIR / "outputs" / "orthopedic_practices_with_websites.csv"
+SUMMARY_PATH = DELIVERABLE_DIR / "outputs" / "website_enrichment_summary.json"
+QUERY_CACHE_PATH = DELIVERABLE_DIR / "outputs" / "website_query_cache.json"
+DETAILS_CACHE_PATH = DELIVERABLE_DIR / "outputs" / "website_details_cache.json"
 
 TEXT_SEARCH_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
 DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json"

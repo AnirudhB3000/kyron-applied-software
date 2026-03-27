@@ -5,8 +5,9 @@ from collections import defaultdict
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent
-OUTPUTS_DIR = BASE_DIR / "outputs"
+SCRIPT_DIR = Path(__file__).resolve().parent
+DELIVERABLE_DIR = SCRIPT_DIR.parent
+OUTPUTS_DIR = DELIVERABLE_DIR / "outputs"
 
 CANDIDATES_PATH = OUTPUTS_DIR / "orthopedic_candidates.csv"
 DEDUPED_PATH = OUTPUTS_DIR / "orthopedic_practices_deduped.csv"

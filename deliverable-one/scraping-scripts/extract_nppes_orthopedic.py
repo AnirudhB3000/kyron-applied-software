@@ -5,9 +5,10 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR / "data"
-OUTPUT_DIR = BASE_DIR / "outputs"
+SCRIPT_DIR = Path(__file__).resolve().parent
+DELIVERABLE_DIR = SCRIPT_DIR.parent
+DATA_DIR = DELIVERABLE_DIR / "data"
+OUTPUT_DIR = DELIVERABLE_DIR / "outputs"
 
 NPIDATA_PATH = DATA_DIR / "npidata_pfile_20050523-20260308.csv"
 PL_PATH = DATA_DIR / "pl_pfile_20050523-20260308.csv"

@@ -6,10 +6,11 @@ This deliverable builds a cleaned dataset of orthopedic practices in the United 
 
 - `data/`: source NPPES files and reference documents
 - `outputs/`: generated candidate, deduped, and QA outputs
-- `extract_nppes_orthopedic.py`: extraction and candidate-generation script
-- `dedupe_orthopedic_practices.py`: precision filtering and practice-level deduplication script
-- `enrich_websites_google.py`: Google Places website-enrichment script
-- `clean_websites_nulls.py`: final cleanup script that normalizes empty website values to `null`
+- `scraping-scripts/`: executable pipeline scripts for extraction, deduplication, website enrichment, and final cleanup
+- `scraping-scripts/extract_nppes_orthopedic.py`: extraction and candidate-generation script
+- `scraping-scripts/dedupe_orthopedic_practices.py`: precision filtering and practice-level deduplication script
+- `scraping-scripts/enrich_websites_google.py`: Google Places website-enrichment script
+- `scraping-scripts/clean_websites_nulls.py`: final cleanup script that normalizes empty website values to `null`
 - `SCHEMA.md`: output schema reference
 
 ## Pipeline
@@ -51,14 +52,31 @@ Website enrichment step:
 
 ## Run Order
 
-From `deliverable-one/`:
+Run the pipeline from the repository root, `D:\kyron-applied-software`, or from inside `deliverable-one/`.
+
+If you run from the repository root, use:
 
 ```powershell
-python .\extract_nppes_orthopedic.py
-python .\dedupe_orthopedic_practices.py
-python .\enrich_websites_google.py
-python .\clean_websites_nulls.py
+python .\deliverable-one\scraping-scripts\extract_nppes_orthopedic.py
+python .\deliverable-one\scraping-scripts\dedupe_orthopedic_practices.py
+python .\deliverable-one\scraping-scripts\enrich_websites_google.py
+python .\deliverable-one\scraping-scripts\clean_websites_nulls.py
 ```
+
+If you run from inside `deliverable-one/`, use:
+
+```powershell
+python .\scraping-scripts\extract_nppes_orthopedic.py
+python .\scraping-scripts\dedupe_orthopedic_practices.py
+python .\scraping-scripts\enrich_websites_google.py
+python .\scraping-scripts\clean_websites_nulls.py
+```
+
+## Environment
+
+- `extract_nppes_orthopedic.py`, `dedupe_orthopedic_practices.py`, and `clean_websites_nulls.py` use only local files under `deliverable-one/data` and `deliverable-one/outputs`.
+- `enrich_websites_google.py` expects a Google Maps or Google Places API key in the repository-level `.env` file at `D:\kyron-applied-software\.env`.
+- Supported environment variable names are `GOOGLE_MAPS_API_KEY` and `GOOGLE_PLACES_API_KEY`.
 
 ## Notes
 
